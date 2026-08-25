@@ -11,6 +11,20 @@ class Procloudify_SMTP_Admin {
         add_action('admin_init', [$this, 'handle_save_settings']);
         add_action('admin_init', [$this, 'handle_send_test']);
         add_action('wp_ajax_procloudify_ajax_test_email', [$this, 'ajax_send_test_email']);
+        add_action('admin_head-plugins.php', [$this, 'hide_compatibility_row']);
+    }
+
+    public function hide_compatibility_row() {
+        echo '<style>
+            tr#smtp-by-procloudify-update .compatibility-field,
+            tr[data-slug="smtp-by-procloudify"] .compatibility-field,
+            tr[data-plugin="smtp-by-procloudify/smtp-by-procloudify.php"] .compatibility-field,
+            tr#smtp-by-procloudify-update .update-message p br:last-of-type,
+            tr[data-slug="smtp-by-procloudify"] .update-message p br:last-of-type,
+            tr[data-plugin="smtp-by-procloudify/smtp-by-procloudify.php"] .update-message p br:last-of-type {
+                display: none !important;
+            }
+        </style>';
     }
 
     public function add_admin_menu() {
