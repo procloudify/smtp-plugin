@@ -110,12 +110,17 @@ class Procloudify_SMTP_Updater {
                 }
             }
 
+            $current_wp = get_bloginfo('version');
+
             $obj = new stdClass();
             $obj->slug = 'smtp-by-procloudify';
             $obj->new_version = $new_version;
             $obj->url = !empty($release['html_url']) ? $release['html_url'] : "https://github.com/{$this->github_repo}";
             $obj->package = $package;
             $obj->plugin = $this->plugin_slug;
+            $obj->requires = '5.0';
+            $obj->tested = $current_wp;
+            $obj->requires_php = '7.4';
             $obj->icons = [
                 '1x'      => PROCLOUDIFY_SMTP_URL . 'assets/images/icon-128x128.png',
                 '2x'      => PROCLOUDIFY_SMTP_URL . 'assets/images/icon-256x256.png',
@@ -143,6 +148,7 @@ class Procloudify_SMTP_Updater {
         }
 
         $new_version = ltrim($release['tag_name'], 'v');
+        $current_wp = get_bloginfo('version');
 
         $package = !empty($release['zipball_url']) ? $release['zipball_url'] : '';
         if (!empty($release['assets']) && is_array($release['assets'])) {
@@ -161,6 +167,9 @@ class Procloudify_SMTP_Updater {
         $info->author = '<a href="https://procloudify.com">Procloudify</a>';
         $info->homepage = 'https://procloudify.com';
         $info->download_link = $package;
+        $info->requires = '5.0';
+        $info->tested = $current_wp;
+        $info->requires_php = '7.4';
         $info->icons = [
             '1x'      => PROCLOUDIFY_SMTP_URL . 'assets/images/icon-128x128.png',
             '2x'      => PROCLOUDIFY_SMTP_URL . 'assets/images/icon-256x256.png',
