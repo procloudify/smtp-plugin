@@ -1,0 +1,325 @@
+.procloudify-wp-wrap {
+  margin-top: 20px;
+}
+
+.procloudify-badge-tag {
+  display: inline-block;
+  font-size: 11px;
+  font-weight: 600;
+  background: #f0f0f1;
+  color: #50575e;
+  border: 1px solid #c3c4c7;
+  padding: 2px 8px;
+  border-radius: 4px;
+  margin-left: 8px;
+  vertical-align: middle;
+}
+
+.procloudify-wp-wrap .nav-tab-wrapper {
+  margin-bottom: 20px;
+  border-bottom: 1px solid #c3c4c7;
+}
+
+.procloudify-wp-wrap .nav-tab .dashicons {
+  font-size: 16px;
+  width: 16px;
+  height: 16px;
+  margin-right: 4px;
+  vertical-align: -2px;
+}
+
+.status-dot-configured {
+  display: inline-block;
+  width: 7px;
+  height: 7px;
+  background-color: #00a32a;
+  border-radius: 50%;
+  margin-left: 6px;
+  vertical-align: middle;
+}
+
+.procloudify-main-layout {
+  display: flex;
+  gap: 20px;
+  align-items: stretch;
+  max-width: 1150px;
+}
+
+.procloudify-content-area {
+  flex: 1;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+}
+
+.procloudify-sidebar-area {
+  width: 320px;
+  flex-shrink: 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  gap: 15px;
+}
+
+.procloudify-postbox {
+  background: #ffffff;
+  border: 1px solid #c3c4c7;
+  box-shadow: 0 1px 1px rgba(0, 0, 0, 0.04);
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  box-sizing: border-box;
+  margin-bottom: 0;
+}
+
+.procloudify-postbox .postbox-header {
+  border-bottom: 1px solid #c3c4c7;
+  padding: 0;
+  flex-shrink: 0;
+}
+
+.procloudify-postbox .postbox-header h2 {
+  font-size: 14px;
+  font-weight: 600;
+  padding: 12px 16px;
+  margin: 0;
+  color: #1d2327;
+}
+
+.procloudify-postbox .inside {
+  padding: 10px 20px 20px 20px;
+  margin: 0;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+.procloudify-postbox .inside form {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  justify-content: space-between;
+}
+
+.procloudify-postbox .inside .submit {
+  margin-top: auto;
+  padding-top: 15px;
+  padding-bottom: 0;
+  margin-bottom: 0;
+}
+
+.procloudify-wp-wrap .form-table {
+  margin-top: 0;
+}
+
+.procloudify-wp-wrap .form-table th {
+  width: 160px;
+  font-weight: 600;
+  color: #1d2327;
+  padding: 14px 10px 14px 0;
+}
+
+.procloudify-wp-wrap .form-table td {
+  padding: 10px 10px;
+}
+
+.procloudify-pass-wrap {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  max-width: 100%;
+}
+
+.procloudify-toggle-pw {
+  height: 30px !important;
+  line-height: 28px !important;
+  padding: 0 8px !important;
+  cursor: pointer;
+}
+
+.procloudify-toggle-pw .dashicons {
+  font-size: 16px;
+  width: 16px;
+  height: 16px;
+  vertical-align: middle;
+}
+
+.submit .button-primary .dashicons {
+  font-size: 16px;
+  width: 16px;
+  height: 16px;
+  vertical-align: -2px;
+  margin-right: 4px;
+}
+
+.procloudify-sidebar-box {
+  margin-bottom: 0;
+  background: #ffffff;
+  border: 1px solid #c3c4c7;
+  box-shadow: 0 1px 1px rgba(0, 0, 0, 0.04);
+  display: flex;
+  flex-direction: column;
+  box-sizing: border-box;
+}
+
+.procloudify-sidebar-area .procloudify-sidebar-box:nth-child(2),
+.procloudify-sidebar-area .procloudify-sidebar-box:nth-child(3) {
+  flex: 1;
+}
+
+.procloudify-sidebar-box .postbox-header {
+  border-bottom: 1px solid #c3c4c7;
+  background: #f6f7f7;
+  flex-shrink: 0;
+}
+
+.procloudify-sidebar-box .postbox-header h2 {
+  font-size: 13px;
+  font-weight: 600;
+  padding: 10px 14px;
+  margin: 0;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  color: #1d2327;
+}
+
+.procloudify-sidebar-box .postbox-header h2 .dashicons {
+  font-size: 16px;
+  width: 16px;
+  height: 16px;
+  color: #2271b1;
+}
+
+.procloudify-sidebar-box .inside {
+  padding: 14px;
+  margin: 0;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.procloudify-status-banner {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 10px 12px;
+  border-radius: 6px;
+}
+
+.status-banner-active {
+  background-color: #edfaef;
+  border: 1px solid #c3e6cb;
+  color: #0f5132;
+}
+
+.status-banner-active .banner-icon .dashicons {
+  color: #198754;
+  font-size: 20px;
+  width: 20px;
+  height: 20px;
+}
+
+.status-banner-inactive {
+  background-color: #fcf0f2;
+  border: 1px solid #f5c2c7;
+  color: #842029;
+}
+
+.status-banner-inactive .banner-icon .dashicons {
+  color: #dc3545;
+  font-size: 20px;
+  width: 20px;
+  height: 20px;
+}
+
+.banner-content strong {
+  display: block;
+  font-size: 13px;
+  line-height: 1.2;
+}
+
+.banner-content small {
+  display: block;
+  font-size: 11px;
+  color: #646970;
+  margin-top: 2px;
+}
+
+.support-text {
+  font-size: 12px;
+  color: #646970;
+  line-height: 1.5;
+  margin: 0 0 12px 0;
+}
+
+.procloudify-sidebar-btn {
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  gap: 6px !important;
+  width: 100% !important;
+  text-align: center !important;
+  height: 36px !important;
+  line-height: 1 !important;
+  font-size: 13px !important;
+  font-weight: 500 !important;
+  padding: 0 12px !important;
+  box-sizing: border-box !important;
+}
+
+.procloudify-sidebar-btn .dashicons {
+  font-size: 16px !important;
+  width: 16px !important;
+  height: 16px !important;
+  line-height: 16px !important;
+  margin: 0 !important;
+  padding: 0 !important;
+  vertical-align: middle !important;
+  color: #2271b1 !important;
+}
+
+.procloudify-review-box .postbox-header h2 .dashicons {
+  color: #00b67a !important;
+}
+
+.trustpilot-stars {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 4px;
+  background: #f0fdf4;
+  border: 1px solid #bbf7d0;
+  padding: 8px 12px;
+  border-radius: 6px;
+  margin-bottom: 10px;
+  user-select: none;
+}
+
+.trustpilot-stars .dashicons {
+  color: #00b67a;
+  font-size: 20px;
+  width: 20px;
+  height: 20px;
+  pointer-events: none;
+}
+
+.procloudify-review-btn:hover {
+  background-color: #f0fdf4 !important;
+  border-color: #00b67a !important;
+  color: #0f5132 !important;
+}
+
+.procloudify-review-btn .dashicons {
+  color: #00b67a !important;
+}
+
+@media screen and (max-width: 960px) {
+  .procloudify-main-layout {
+    flex-direction: column;
+  }
+  .procloudify-sidebar-area {
+    width: 100%;
+  }
+}
