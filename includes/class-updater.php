@@ -116,8 +116,15 @@ class Procloudify_SMTP_Updater {
             $obj->url = !empty($release['html_url']) ? $release['html_url'] : "https://github.com/{$this->github_repo}";
             $obj->package = $package;
             $obj->plugin = $this->plugin_slug;
-            $obj->icons = [];
-            $obj->banners = [];
+            $obj->icons = [
+                '1x'      => PROCLOUDIFY_SMTP_URL . 'assets/images/icon-128x128.png',
+                '2x'      => PROCLOUDIFY_SMTP_URL . 'assets/images/icon-256x256.png',
+                'default' => PROCLOUDIFY_SMTP_URL . 'assets/images/icon-256x256.png',
+            ];
+            $obj->banners = [
+                'low'  => PROCLOUDIFY_SMTP_URL . 'assets/images/banner-772x250.png',
+                'high' => PROCLOUDIFY_SMTP_URL . 'assets/images/banner-1544x500.png',
+            ];
 
             $transient->response[$this->plugin_slug] = $obj;
         }
@@ -154,6 +161,15 @@ class Procloudify_SMTP_Updater {
         $info->author = '<a href="https://procloudify.com">Procloudify</a>';
         $info->homepage = 'https://procloudify.com';
         $info->download_link = $package;
+        $info->icons = [
+            '1x'      => PROCLOUDIFY_SMTP_URL . 'assets/images/icon-128x128.png',
+            '2x'      => PROCLOUDIFY_SMTP_URL . 'assets/images/icon-256x256.png',
+            'default' => PROCLOUDIFY_SMTP_URL . 'assets/images/icon-256x256.png',
+        ];
+        $info->banners = [
+            'low'  => PROCLOUDIFY_SMTP_URL . 'assets/images/banner-772x250.png',
+            'high' => PROCLOUDIFY_SMTP_URL . 'assets/images/banner-1544x500.png',
+        ];
         $info->sections = [
             'description' => 'Dedicated high-speed SMTP mail routing plugin for Procloudify clients.',
             'changelog'   => !empty($release['body']) ? nl2br(esc_html($release['body'])) : 'Bug fixes and performance improvements.',

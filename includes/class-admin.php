@@ -212,6 +212,7 @@ class Procloudify_SMTP_Admin {
         ?>
         <div class="wrap procloudify-wp-wrap">
             <h1 class="wp-heading-inline">
+                <img src="<?php echo esc_url(PROCLOUDIFY_SMTP_URL . 'assets/images/icon-128x128.png'); ?>" alt="Procloudify" style="width: 26px; height: 26px; vertical-align: -5px; border-radius: 5px; margin-right: 6px;">
                 <?php esc_html_e('Procloudify SMTP', 'smtp-by-procloudify'); ?>
                 <span class="procloudify-badge-tag"><?php esc_html_e('For Procloudify Clients', 'smtp-by-procloudify'); ?></span>
             </h1>
