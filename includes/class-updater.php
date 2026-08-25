@@ -28,12 +28,18 @@ class Procloudify_SMTP_Updater {
         }
 
         $transient_key = 'procloudify_smtp_gh_release';
-        $cached = get_site_transient($transient_key);
-        if ($cached !== false) {
-            $this->github_api_result = $cached;
-            return $cached;
+        
+        if (isset($_GET['force-check']) || isset($_GET['check_again'])) {
+            delete_site_transient($transient_key);
+        } else {
+            $cached = get_site_transient($transient_key);
+            if ($cached !== false) {
+                $this->github_api_result = $cached;
+                return $cached;
+            }
         }
 
+        // 1. Try Releases API
         $url = "https://api.github.com/repos/{$this->github_repo}/releases/latest";
         $response = wp_remote_get($url, [
             'timeout'    => 10,
@@ -43,17 +49,42 @@ class Procloudify_SMTP_Updater {
             ],
         ]);
 
-        if (is_wp_error($response) || 200 !== wp_remote_retrieve_response_code($response)) {
-            return false;
+        $data = [];
+        if (!is_wp_error($response) && 200 === wp_remote_retrieve_response_code($response)) {
+            $data = json_decode(wp_remote_retrieve_body($response), true);
         }
 
-        $data = json_decode(wp_remote_retrieve_body($response), true);
+        // 2. Fallback to Tags API if no formal release yet
+        if (empty($data['tag_name'])) {
+            $tags_url = "https://api.github.com/repos/{$this->github_repo}/tags";
+            $tags_resp = wp_remote_get($tags_url, [
+                'timeout'    => 10,
+                'user-agent' => 'WordPress/' . get_bloginfo('version') . '; ' . home_url(),
+                'headers'    => [
+                    'Accept' => 'application/vnd.github.v3+json',
+                ],
+            ]);
+
+            if (!is_wp_error($tags_resp) && 200 === wp_remote_retrieve_response_code($tags_resp)) {
+                $tags = json_decode(wp_remote_retrieve_body($tags_resp), true);
+                if (!empty($tags) && is_array($tags) && !empty($tags[0]['name'])) {
+                    $latest_tag = $tags[0];
+                    $data = [
+                        'tag_name'    => $latest_tag['name'],
+                        'zipball_url' => $latest_tag['zipball_url'],
+                        'html_url'    => "https://github.com/{$this->github_repo}/releases/tag/{$latest_tag['name']}",
+                        'body'        => 'Release ' . $latest_tag['name'],
+                    ];
+                }
+            }
+        }
+
         if (empty($data) || empty($data['tag_name'])) {
             return false;
         }
 
         $this->github_api_result = $data;
-        set_site_transient($transient_key, $data, 12 * HOUR_IN_SECONDS);
+        set_site_transient($transient_key, $data, 3 * HOUR_IN_SECONDS);
         return $data;
     }
 
@@ -69,7 +100,7 @@ class Procloudify_SMTP_Updater {
 
         $new_version = ltrim($release['tag_name'], 'v');
         if (version_compare($this->version, $new_version, '<')) {
-            $package = $release['zipball_url'];
+            $package = !empty($release['zipball_url']) ? $release['zipball_url'] : '';
             if (!empty($release['assets']) && is_array($release['assets'])) {
                 foreach ($release['assets'] as $asset) {
                     if (!empty($asset['browser_download_url']) && preg_match('/\.zip$/i', $asset['browser_download_url'])) {
@@ -82,7 +113,7 @@ class Procloudify_SMTP_Updater {
             $obj = new stdClass();
             $obj->slug = 'smtp-by-procloudify';
             $obj->new_version = $new_version;
-            $obj->url = $release['html_url'];
+            $obj->url = !empty($release['html_url']) ? $release['html_url'] : "https://github.com/{$this->github_repo}";
             $obj->package = $package;
             $obj->plugin = $this->plugin_slug;
             $obj->icons = [];
@@ -106,7 +137,7 @@ class Procloudify_SMTP_Updater {
 
         $new_version = ltrim($release['tag_name'], 'v');
 
-        $package = $release['zipball_url'];
+        $package = !empty($release['zipball_url']) ? $release['zipball_url'] : '';
         if (!empty($release['assets']) && is_array($release['assets'])) {
             foreach ($release['assets'] as $asset) {
                 if (!empty($asset['browser_download_url']) && preg_match('/\.zip$/i', $asset['browser_download_url'])) {

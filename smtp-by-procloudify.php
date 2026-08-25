@@ -3,7 +3,7 @@
  * Plugin Name: Procloudify SMTP
  * Plugin URI: https://procloudify.com
  * Description: Dedicated high-speed SMTP mail routing plugin for Procloudify clients.
- * Version: 1.0.0
+ * Version: 1.0.1
  * Author: Procloudify
  * Author URI: https://procloudify.com
  * License: GPL-2.0-or-later
@@ -14,7 +14,7 @@ if (!defined('ABSPATH')) {
     exit;
 }
 
-define('PROCLOUDIFY_SMTP_VERSION', '1.0.0');
+define('PROCLOUDIFY_SMTP_VERSION', '1.0.1');
 define('PROCLOUDIFY_SMTP_FILE', __FILE__);
 define('PROCLOUDIFY_SMTP_PATH', plugin_dir_path(__FILE__));
 define('PROCLOUDIFY_SMTP_URL', plugin_dir_url(__FILE__));
